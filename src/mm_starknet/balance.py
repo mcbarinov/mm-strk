@@ -5,8 +5,8 @@ from typing import cast
 from mm_std import Err, Ok, Result, random_choice
 from starknet_py.net.account.account import Account
 from starknet_py.net.full_node_client import FullNodeClient
-from starknet_py.net.models import StarknetChainId
-from starknet_py.net.signer.stark_curve_signer import KeyPair
+from starknet_py.net.models.chains import StarknetChainId
+from starknet_py.net.signer.key_pair import KeyPair
 
 ETH_ADDRESS_MAINNET = "0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"
 ETH_DECIMALS = 18
@@ -30,7 +30,7 @@ def get_balance(node_urls: str | Sequence[str], address: str, token: str, attemp
                 chain=StarknetChainId.MAINNET,
                 key_pair=KeyPair(private_key=654, public_key=321),
             )
-            return Ok(account.get_balance_sync(token_address=token))
+            return Ok(account.get_balance_sync(token_address=token))  # type: ignore[attr-defined]
         except Exception as err:
             res = Err(err)
     return res
