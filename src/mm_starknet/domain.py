@@ -1,18 +1,22 @@
-from mm_std import Err, Ok, Result, hr, random_str_choice
+from mm_crypto_utils import Proxies
+from mm_std import Err, Ok, Result, hr, random_str_choice, str_contains_any
 
-from mm_starknet.types import Proxies
 
-
-def address_to_domain(address: str, timeout: int = 10, proxies: Proxies = None, attempts: int = 3) -> Result[str]:
+def address_to_domain(address: str, timeout: float = 5, proxies: Proxies = None) -> Result[str | None]:
     url = "https://api.starknet.id/addr_to_domain"
-    result = Err("not_started")
-    for _ in range(attempts):
-        res = hr(url, params={"addr": address}, proxy=random_str_choice(proxies), timeout=timeout)
-        data = res.to_dict()
-        if res.json and res.json.get("domain"):
-            return Ok(res.json.get("domain"), data=data)
-        if res.code == 400 and "no domain found" in res.body.lower():
-            return Ok("", data)
-        result = Err("unknown_response", data)
+    res = hr(url, params={"addr": address}, proxy=random_str_choice(proxies), timeout=timeout)
+    data = res.to_dict()
+    if res.json and res.json.get("domain"):
+        return Ok(res.json.get("domain"), data=data)
+    if res.code == 400 and str_contains_any(res.body.lower(), ["no data found", "no domain found"]):
+        return Ok(None, data)
+    return Err("unknown_response", data)
 
-    return result
+
+def address_to_domain_with_retries(retries: int, address: str, timeout: float = 5, proxies: Proxies = None) -> Result[str | None]:
+    res: Result[str | None] = Err("not started yet")
+    for _ in range(retries):
+        res = address_to_domain(address, timeout=timeout, proxies=proxies)
+        if res.is_ok():
+            return res
+    return res

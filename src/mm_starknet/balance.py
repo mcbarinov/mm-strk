@@ -1,8 +1,9 @@
-from collections.abc import Sequence
-from decimal import Decimal
-from typing import cast
+import asyncio
 
-from mm_std import Err, Ok, Result, random_choice
+import aiohttp
+from aiohttp_socks import ProxyConnector
+from mm_crypto_utils import Nodes, Proxies, random_node, random_proxy
+from mm_std import Err, Ok, Result
 from starknet_py.net.account.account import Account
 from starknet_py.net.full_node_client import FullNodeClient
 from starknet_py.net.models.chains import StarknetChainId
@@ -16,34 +17,39 @@ USDC_ADDRESS_MAINNET = "0x053c91253bc9682c04929ca02ed00b3e423f6710d2ee7e0d5ebb06
 USDC_DECIMALS = 6
 USDT_ADDRESS_MAINNET = "0x068f5c6a61780768455de69077e07e89787839bf8166decfbf92b645209c0fb8"
 USDT_DECIMALS = 6
+STRK_ADDRESS_MAINNET = "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858f4287c938d"
+STRK_DECIMALS = 18
 
 
-def get_balance(node_urls: str | Sequence[str], address: str, token: str, attempts: int = 3) -> Result[int]:
-    res: Result[int] = Err("not_started")
-    for _ in range(attempts):
-        try:
-            url = cast(str, random_choice(node_urls))
-            client = FullNodeClient(node_url=url)
+async def get_async_balance(rpc_url: str, address: str, token: str, timeout: float = 5, proxy: str | None = None) -> Result[int]:  # noqa: ASYNC109
+    try:
+        timeout_config = aiohttp.ClientTimeout(total=timeout)
+        connector = ProxyConnector.from_url(proxy) if proxy else None
+        async with aiohttp.ClientSession(connector=connector, timeout=timeout_config) as session:
+            client = FullNodeClient(node_url=rpc_url, session=session)
             account = Account(
                 address=address,
                 client=client,
                 chain=StarknetChainId.MAINNET,
                 key_pair=KeyPair(private_key=654, public_key=321),
             )
-            return Ok(account.get_balance_sync(token_address=token))  # type: ignore[attr-defined]
-        except Exception as err:
-            res = Err(err)
+            balance = await account.get_balance(token_address=token)
+            return Ok(balance)
+
+    except Exception as err:
+        return Err(err)
+
+
+def get_balance(rpc_url: str, address: str, token: str, timeout: float = 5, proxy: str | None = None) -> Result[int]:
+    return asyncio.run(get_async_balance(rpc_url, address, token, timeout, proxy))
+
+
+def get_balance_with_retries(
+    retries: int, nodes: Nodes, address: str, token: str, timeout: float = 5, proxies: Proxies = None
+) -> Result[int]:
+    res: Result[int] = Err("not_started")
+    for _ in range(retries):
+        res = get_balance(random_node(nodes), address, token, timeout=timeout, proxy=random_proxy(proxies))
+        if res.is_ok():
+            return res
     return res
-
-
-def get_balance_decimal(
-    node_urls: str | Sequence[str],
-    address: str,
-    token: str,
-    decimals: int,
-    round_ndigits: int = 5,
-    attempts: int = 3,
-) -> Result[Decimal]:
-    return get_balance(node_urls, address, token, attempts).and_then(
-        lambda o: Ok(round(Decimal(o / 10**decimals), ndigits=round_ndigits)),
-    )
