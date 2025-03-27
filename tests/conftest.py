@@ -3,6 +3,11 @@ from mm_std import get_dotenv
 
 
 @pytest.fixture
+def anyio_backend() -> str:
+    return "asyncio"
+
+
+@pytest.fixture
 def zklend_market_address() -> str:
     return "0x04c0a5193d58f74fbace4b74dcf65481e734ed1714121bdc571da345540efa05"
 
