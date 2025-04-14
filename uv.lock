@@ -629,19 +629,19 @@ wheels = [
 
 [[package]]
 name = "mm-crypto-utils"
-version = "0.2.12"
+version = "0.2.13"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "loguru" },
     { name = "mm-std" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/43/c3/5c961b098899f2f71b955cdd1aa60de26d871b09d387461be9692cc33c17/mm_crypto_utils-0.2.12-py3-none-any.whl", hash = "sha256:d41e9d45e7752d1a211f3a799b851ee87c711c3e3cf3feececdbd9041344a624", size = 9146 },
+    { url = "https://files.pythonhosted.org/packages/84/00/5bf801eba9d5af8f4bb330993db85c12dec8df13b15e984d83ffccbc60ce/mm_crypto_utils-0.2.13-py3-none-any.whl", hash = "sha256:dc79cf3767ca1a9f56900d1a2b9c1d8016e6334026fa27271b4fd109fae9ff72", size = 9708 },
 ]
 
 [[package]]
 name = "mm-starknet"
-version = "0.2.3"
+version = "0.2.4"
 source = { editable = "." }
 dependencies = [
     { name = "mm-crypto-utils" },
@@ -662,7 +662,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "mm-crypto-utils", specifier = ">=0.2.12" },
+    { name = "mm-crypto-utils", specifier = ">=0.2.13" },
     { name = "starknet-py", specifier = "~=0.26.1" },
     { name = "typer", specifier = ">=0.15.2" },
 ]
@@ -680,7 +680,7 @@ dev = [
 
 [[package]]
 name = "mm-std"
-version = "0.3.25"
+version = "0.3.29"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -695,7 +695,7 @@ dependencies = [
     { name = "tomlkit" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/11/8d/3704471a1eb627aaa221936c8a1f06f56b3668804c21f57e757d8ef9a6e6/mm_std-0.3.25-py3-none-any.whl", hash = "sha256:feb64df4c9327d170c6d097f41ea92ca879654e21d5fa67051d47e198545b407", size = 22516 },
+    { url = "https://files.pythonhosted.org/packages/da/9e/8770e2e05e7276307c9159148bb034addf735d33937fdae904ff2df4df7f/mm_std-0.3.29-py3-none-any.whl", hash = "sha256:35904c4e891d8ee6ad47dcb847bd3e5124c595ba284e46d3ad00b7d3cbf89256", size = 26542 },
 ]
 
 [[package]]
