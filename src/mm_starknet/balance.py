@@ -1,11 +1,7 @@
-import asyncio
-
 import aiohttp
 from aiohttp_socks import ProxyConnector
-from mm_crypto_utils import Nodes, Proxies, random_node, random_proxy
-from mm_std import Err, Ok, Result
+from mm_std import Result
 from starknet_py.net.account.account import Account
-from starknet_py.net.client_errors import ClientError
 from starknet_py.net.full_node_client import FullNodeClient
 from starknet_py.net.models.chains import StarknetChainId
 from starknet_py.net.signer.key_pair import KeyPair
@@ -22,7 +18,7 @@ STRK_ADDRESS_MAINNET = "0x04718f5a0fc34cc1af16a1cdee98ffb20c31f5cd61d6ab07201858
 STRK_DECIMALS = 18
 
 
-async def get_balance_async(rpc_url: str, address: str, token: str, timeout: float = 5, proxy: str | None = None) -> Result[int]:
+async def get_balance(rpc_url: str, address: str, token: str, timeout: float = 5, proxy: str | None = None) -> Result[int]:
     try:
         timeout_config = aiohttp.ClientTimeout(total=timeout)
         connector = ProxyConnector.from_url(proxy) if proxy else None
@@ -35,35 +31,6 @@ async def get_balance_async(rpc_url: str, address: str, token: str, timeout: flo
                 key_pair=KeyPair(private_key=654, public_key=321),
             )
             balance = await account.get_balance(token_address=token)
-            return Ok(balance)
-    except ClientError as err:
-        return Err(err)
-
-    except Exception as err:
-        return Err(err)
-
-
-def get_balance(rpc_url: str, address: str, token: str, timeout: float = 5, proxy: str | None = None) -> Result[int]:
-    return asyncio.run(get_balance_async(rpc_url, address, token, timeout, proxy))
-
-
-def get_balance_with_retries(
-    retries: int, nodes: Nodes, address: str, token: str, timeout: float = 5, proxies: Proxies = None
-) -> Result[int]:
-    res: Result[int] = Err("not_started")
-    for _ in range(retries):
-        res = get_balance(random_node(nodes), address, token, timeout=timeout, proxy=random_proxy(proxies))
-        if res.is_ok():
-            return res
-    return res
-
-
-async def get_balance_with_retries_async(
-    retries: int, nodes: Nodes, address: str, token: str, timeout: float = 5, proxies: Proxies = None
-) -> Result[int]:
-    res: Result[int] = Err("not_started")
-    for _ in range(retries):
-        res = await get_balance_async(random_node(nodes), address, token, timeout=timeout, proxy=random_proxy(proxies))
-        if res.is_ok():
-            return res
-    return res
+            return Result.success(balance)
+    except Exception as e:
+        return Result.failure(e)

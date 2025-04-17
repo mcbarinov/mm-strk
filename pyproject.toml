@@ -1,11 +1,11 @@
 [project]
 name = "mm-starknet"
-version = "0.2.6"
+version = "0.3.0"
 description = ""
 requires-python = ">=3.12"
 dependencies = [
-    "mm-crypto-utils>=0.2.15",
-    "starknet-py~=0.26.1",
+    "mm-crypto-utils>=0.3.1",
+    "starknet-py~=0.26.2",
     "typer>=0.15.2",
 ]
 [project.scripts]

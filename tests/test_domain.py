@@ -1,29 +1,17 @@
 import pytest
 
-from mm_starknet.domain import address_to_domain, address_to_domain_async
+from mm_starknet import domain
 
 pytestmark = pytest.mark.anyio
 
 
-def test_address_to_domain_exist():
-    res = address_to_domain("0x0060b56b67e1b4dd1909376496b0e867f165f31c5eac7902d9ff48112f16ef9b")
+async def test_address_to_domain_exist():
+    res = await domain.address_to_domain("0x0060b56b67e1b4dd1909376496b0e867f165f31c5eac7902d9ff48112f16ef9b")
     assert res.is_ok()
-    assert res.ok == "abc.stark"
-
-
-async def test_address_to_domain_async_exist():
-    res = await address_to_domain_async("0x0060b56b67e1b4dd1909376496b0e867f165f31c5eac7902d9ff48112f16ef9b")
-    assert res.is_ok()
-    assert res.ok == "abc.stark"
-
-
-def test_address_to_domain_not_exist():
-    res = address_to_domain("0x0060b56b67e1b4dd1909376496b0e867f165f31c5eac7902d9ff48112f16ef9a")  # not existed
-    assert res.is_ok()
-    assert res.ok is None
+    assert res.unwrap() == "abc.stark"
 
 
 async def test_address_to_domain_async_not_exist():
-    res = await address_to_domain_async("0x0060b56b67e1b4dd1909376496b0e867f165f31c5eac7902d9ff48112f16ef9a")  # not existed
+    res = await domain.address_to_domain("0x0060b56b67e1b4dd1909376496b0e867f165f31c5eac7902d9ff48112f16ef9a")  # not existed
     assert res.is_ok()
-    assert res.ok is None
+    assert res.unwrap() is None

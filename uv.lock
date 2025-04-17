@@ -629,19 +629,19 @@ wheels = [
 
 [[package]]
 name = "mm-crypto-utils"
-version = "0.2.15"
+version = "0.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "loguru" },
     { name = "mm-std" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/71/2d/d454b33604f43efeea62fe2830933bc666cdd7d1e47c5904671b4ddcc836/mm_crypto_utils-0.2.15-py3-none-any.whl", hash = "sha256:a87560b5314d8cf6b387d9330d5d47ea10bd3073d5d5f43e54b1e10a4f0a799e", size = 9708 },
+    { url = "https://files.pythonhosted.org/packages/39/29/1e86201c03a77d325f55d5acec50def8c898606d27b3800db0221e09467b/mm_crypto_utils-0.3.1-py3-none-any.whl", hash = "sha256:c9e999638e4d857e1a7b1f2af00ee40bc217325e0af6631f16d11fd8c55766d9", size = 9774 },
 ]
 
 [[package]]
 name = "mm-starknet"
-version = "0.2.6"
+version = "0.3.0"
 source = { editable = "." }
 dependencies = [
     { name = "mm-crypto-utils" },
@@ -662,8 +662,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "mm-crypto-utils", specifier = ">=0.2.15" },
-    { name = "starknet-py", specifier = "~=0.26.1" },
+    { name = "mm-crypto-utils", specifier = ">=0.3.1" },
+    { name = "starknet-py", specifier = "~=0.26.2" },
     { name = "typer", specifier = ">=0.15.2" },
 ]
 
@@ -680,7 +680,7 @@ dev = [
 
 [[package]]
 name = "mm-std"
-version = "0.3.30"
+version = "0.4.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -696,7 +696,7 @@ dependencies = [
     { name = "tomlkit" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4f/44/639f0d9b9663c7a8357b13668c31dfbf3b0e0c7aa617f072757a1b53ecbc/mm_std-0.3.30-py3-none-any.whl", hash = "sha256:2ea26c9f3850fc47ba4873bebb3ffaa17c0b1d991f7c7d890f688e0e76730dbc", size = 26624 },
+    { url = "https://files.pythonhosted.org/packages/0a/80/936a7ce22f45096f769559130cff790a2594030378a52030ec5cf3e6c29c/mm_std-0.4.3-py3-none-any.whl", hash = "sha256:0843386285dbee09d53d228db09affd8c3cb76679b1e836aa8aa45d2b46194d7", size = 23518 },
 ]
 
 [[package]]
@@ -1319,7 +1319,7 @@ wheels = [
 
 [[package]]
 name = "starknet-py"
-version = "0.26.1"
+version = "0.26.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -1335,7 +1335,7 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/2a/69/c6c4e3082a5ee577f270f06061d94e86457eec47707b8d232f80aefa15bf/starknet_py-0.26.1.tar.gz", hash = "sha256:a3a40636fd7e9f269da8995e392bc917a77b667cff5d2deca127ab1797ce39b7", size = 204020 }
+sdist = { url = "https://files.pythonhosted.org/packages/10/79/3a4686945d1823f44aab281a591ea654f849a1d71e97d78bac9221a43fe7/starknet_py-0.26.2.tar.gz", hash = "sha256:afad0eab1d019a57bbcff7b3d0a6f5f5adea49650fa3ad49f2fabf5cfdd81ab1", size = 204437 }
 
 [[package]]
 name = "stevedore"
