@@ -2,4 +2,4 @@ import importlib.metadata
 
 
 def get_version() -> str:
-    return importlib.metadata.version("mm-starknet")
+    return importlib.metadata.version("mm-strk")

@@ -3,15 +3,15 @@ from typing import Annotated
 import typer
 from mm_std import print_plain
 
-from mm_starknet.cli import cli_utils
-from mm_starknet.cli.cmd import node_cmd
+from mm_strk.cli import cli_utils
+from mm_strk.cli.cmd import node_cmd
 
 app = typer.Typer(no_args_is_help=True, pretty_exceptions_enable=False, add_completion=False)
 
 
 def version_callback(value: bool) -> None:
     if value:
-        print_plain(f"mm-starknet: {cli_utils.get_version()}")
+        print_plain(f"mm-strk: {cli_utils.get_version()}")
         raise typer.Exit
 
 

@@ -1,6 +1,6 @@
 import pytest
 
-from mm_starknet import domain
+from mm_strk import domain
 
 pytestmark = pytest.mark.anyio
 

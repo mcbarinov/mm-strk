@@ -1,6 +1,6 @@
 [project]
-name = "mm-starknet"
-version = "0.3.0"
+name = "mm-strk"
+version = "0.3.1"
 description = ""
 requires-python = ">=3.12"
 dependencies = [
@@ -9,7 +9,7 @@ dependencies = [
     "typer>=0.15.2",
 ]
 [project.scripts]
-mm-starknet = "mm_starknet.cli.cli:app"
+mm-strk = "mm_strk.cli.cli:app"
 
 
 [build-system]

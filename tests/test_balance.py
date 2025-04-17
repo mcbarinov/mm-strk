@@ -1,6 +1,6 @@
 import pytest
 
-from mm_starknet import balance
+from mm_strk import balance
 
 pytestmark = pytest.mark.anyio
 
