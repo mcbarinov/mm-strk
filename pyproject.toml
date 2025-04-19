@@ -1,10 +1,10 @@
 [project]
 name = "mm-strk"
-version = "0.3.1"
+version = "0.3.2"
 description = ""
 requires-python = ">=3.12"
 dependencies = [
-    "mm-crypto-utils>=0.3.1",
+    "mm-crypto-utils>=0.3.5",
     "starknet-py~=0.26.2",
     "typer>=0.15.2",
 ]
@@ -20,11 +20,11 @@ build-backend = "hatchling.build"
 dev-dependencies = [
     "pytest~=8.3.5",
     "pytest-xdist~=3.6.1",
-    "ruff~=0.11.5",
+    "ruff~=0.11.6",
     "pip-audit~=2.9.0",
     "bandit~=1.8.3",
     "mypy~=1.15.0",
-    "anyio>=4.9.0",
+    "pytest-asyncio~=0.26.0",
 ]
 
 [tool.mypy]
@@ -73,3 +73,7 @@ indent-style = "space"
 [tool.bandit]
 exclude_dirs = ["tests"]
 skips = ["B311"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"

@@ -1,8 +1,4 @@
-import pytest
-
 from mm_strk import balance
-
-pytestmark = pytest.mark.anyio
 
 
 async def test_get_balance(mainnet_rpc_url):

@@ -31,6 +31,6 @@ async def get_balance(rpc_url: str, address: str, token: str, timeout: float = 5
                 key_pair=KeyPair(private_key=654, public_key=321),
             )
             balance = await account.get_balance(token_address=token)
-            return Result.success(balance)
+            return Result.ok(balance)
     except Exception as e:
-        return Result.failure(e)
+        return Result.err(e)

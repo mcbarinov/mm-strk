@@ -1,8 +1,4 @@
-import pytest
-
 from mm_strk import domain
-
-pytestmark = pytest.mark.anyio
 
 
 async def test_address_to_domain_exist():
