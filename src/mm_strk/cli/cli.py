@@ -1,17 +1,16 @@
 from typing import Annotated
 
+import mm_print
 import typer
-from mm_std import print_plain
 
-from mm_strk.cli import cli_utils
-from mm_strk.cli.cmd import node_cmd
+from mm_strk.cli import cli_utils, commands
 
 app = typer.Typer(no_args_is_help=True, pretty_exceptions_enable=False, add_completion=False)
 
 
 def version_callback(value: bool) -> None:
     if value:
-        print_plain(f"mm-strk: {cli_utils.get_version()}")
+        mm_print.print_plain(f"mm-strk: {cli_utils.get_version()}")
         raise typer.Exit
 
 
@@ -25,4 +24,4 @@ def node_command(
     urls: Annotated[list[str], typer.Argument()],
     proxy: Annotated[str | None, typer.Option("--proxy", "-p", help="Proxy")] = None,
 ) -> None:
-    node_cmd.run(urls, proxy)
+    commands.node.run(urls, proxy)

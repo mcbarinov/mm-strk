@@ -1,7 +1,7 @@
 import asyncio
 
+import mm_print
 import typer
-from mm_std import print_json
 from pydantic import BaseModel
 from starknet_py.net.client_models import SyncStatus
 from starknet_py.net.full_node_client import FullNodeClient
@@ -25,7 +25,7 @@ async def _run(urls: list[str]) -> None:
     for url in urls:
         result[url] = (await _node_status(url)).model_dump()
 
-    print_json(result)
+    mm_print.print_json(result)
 
 
 async def _node_status(url: str) -> NodeStatus:

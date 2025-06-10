@@ -1,6 +1,6 @@
 import aiohttp
 from aiohttp_socks import ProxyConnector
-from mm_std import Result
+from mm_result import Result
 from starknet_py.net.account.account import Account
 from starknet_py.net.full_node_client import FullNodeClient
 from starknet_py.net.models.chains import StarknetChainId
