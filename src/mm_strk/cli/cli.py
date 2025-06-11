@@ -10,7 +10,7 @@ app = typer.Typer(no_args_is_help=True, pretty_exceptions_enable=False, add_comp
 
 def version_callback(value: bool) -> None:
     if value:
-        mm_print.print_plain(f"mm-strk: {cli_utils.get_version()}")
+        mm_print.plain(f"mm-strk: {cli_utils.get_version()}")
         raise typer.Exit
 
 

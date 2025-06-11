@@ -432,6 +432,19 @@ wheels = [
 ]
 
 [[package]]
+name = "loguru"
+version = "0.7.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama", marker = "sys_platform == 'win32'" },
+    { name = "win32-setctime", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3a/05/a1dae3dffd1116099471c643b8924f5aa6524411dc6c63fdae648c4f1aca/loguru-0.7.3.tar.gz", hash = "sha256:19480589e77d47b8d85b2c827ad95d49bf31b0dcde16593892eb51dd18706eb6", size = 63559, upload-time = "2024-12-06T11:20:56.608Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0c/29/0348de65b8cc732daa3e33e67806420b2ae89bdce2b04af740289c5c6c8c/loguru-0.7.3-py3-none-any.whl", hash = "sha256:31a33c10c8e1e10422bfd431aeb5d351c7cf7fa671e3c4df004162264b28220c", size = 61595, upload-time = "2024-12-06T11:20:54.538Z" },
+]
+
+[[package]]
 name = "markdown-it-py"
 version = "3.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -492,16 +505,17 @@ wheels = [
 
 [[package]]
 name = "mm-cryptocurrency"
-version = "0.4.5"
+version = "0.4.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
+    { name = "loguru" },
     { name = "mm-http" },
     { name = "mm-print" },
     { name = "mm-result" },
-    { name = "mm-std" },
 ]
+sdist = { url = "https://files.pythonhosted.org/packages/ea/f8/29866a414ba131baa183f9f2b520e6705f264ef55a81ef9d3187cc127b66/mm_cryptocurrency-0.4.7.tar.gz", hash = "sha256:45d8a1313f4f1f5d893b54fb57408c94d2300bb72757b827312c701f8df53f3b", size = 81327, upload-time = "2025-06-11T08:35:01.637Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/79/11/37a31322cd8e3726908858fd3837bef4e072c4ab9a13fd414a4d4500af30/mm_cryptocurrency-0.4.5-py3-none-any.whl", hash = "sha256:f98ee7eb2870ae8fb4af5b749f0b0e40d368bde90bbc4d5679d6a7e615a2486f", size = 14887, upload-time = "2025-06-10T15:13:02.951Z" },
+    { url = "https://files.pythonhosted.org/packages/31/ab/f03ebe598a1f1b150e9b78782efdc0d865e13e5189e729f4edf2d1ebddce/mm_cryptocurrency-0.4.7-py3-none-any.whl", hash = "sha256:2357ad856076e297a729918c067f98f54d3d369d9c395b2a51a8cefc7d72593e", size = 15376, upload-time = "2025-06-11T08:34:59.981Z" },
 ]
 
 [[package]]
@@ -522,14 +536,15 @@ wheels = [
 
 [[package]]
 name = "mm-print"
-version = "0.0.3"
+version = "0.1.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mm-std" },
     { name = "rich" },
+    { name = "tomlkit" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e1/15/83503548eb52c01176a558a739490008ec8af0a1e0543dcd321f7d67e7d7/mm_print-0.0.3-py3-none-any.whl", hash = "sha256:6417e0ce5a49df7353d9bacf5f6a3bd2027da78addf264f14f0233f2c97b12b7", size = 1982, upload-time = "2025-06-09T08:04:12.462Z" },
+    { url = "https://files.pythonhosted.org/packages/5f/6c/5a44d4ca8a357f86767fe1940df67b125ea4c6d7cadbcecb5deebd5a91c6/mm_print-0.1.1-py3-none-any.whl", hash = "sha256:8fa3664fb5d7d55af6f1598317ff764e2c55e3d3a505725a85997e236dc8d11b", size = 2217, upload-time = "2025-06-11T07:34:12.772Z" },
 ]
 
 [[package]]
@@ -542,19 +557,19 @@ wheels = [
 
 [[package]]
 name = "mm-std"
-version = "0.5.2"
+version = "0.5.3"
 source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/8a/1b/7991ecaf40417757fb8e383ed9cc600c0b3ac731f5c6f9132bd596448213/mm_std-0.5.3.tar.gz", hash = "sha256:e23d548706f32534450f2310d1259f5d84d54e7cc4f33920ad2dba86e8c2f7c6", size = 27823, upload-time = "2025-06-11T06:15:39.037Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7b/24/943ad33ac75a0a478bbb3e95b4691f34f4359b2a3a5ee4585abd621cd797/mm_std-0.5.2-py3-none-any.whl", hash = "sha256:fa524bb1ffd9db6815f20979fbff440ef6725b65560dc1fc7f59cbc7a073fa35", size = 6465, upload-time = "2025-06-09T14:17:48.952Z" },
+    { url = "https://files.pythonhosted.org/packages/56/22/57aa730c90899e5eff6de212c64d2bcf7d8526f3f2fb2d815718db332f36/mm_std-0.5.3-py3-none-any.whl", hash = "sha256:84f25e3a3dc4b10cab30c63be18ca195928a4cabda01b3cee9a27ba5520b2b92", size = 7532, upload-time = "2025-06-11T06:15:37.551Z" },
 ]
 
 [[package]]
 name = "mm-strk"
-version = "0.4.0"
+version = "0.4.1"
 source = { editable = "." }
 dependencies = [
     { name = "mm-cryptocurrency" },
-    { name = "mm-result" },
     { name = "starknet-py" },
     { name = "typer" },
 ]
@@ -573,8 +588,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "mm-cryptocurrency", specifier = "~=0.4.5" },
-    { name = "mm-result", specifier = ">=0.0.4" },
+    { name = "mm-cryptocurrency", specifier = "~=0.4.7" },
     { name = "starknet-py", specifier = "~=0.27.0" },
     { name = "typer", specifier = ">=0.16.0" },
 ]
@@ -1220,6 +1234,15 @@ wheels = [
 ]
 
 [[package]]
+name = "tomlkit"
+version = "0.13.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/cc/18/0bbf3884e9eaa38819ebe46a7bd25dcd56b67434402b66a58c4b8e552575/tomlkit-0.13.3.tar.gz", hash = "sha256:430cf247ee57df2b94ee3fbe588e71d362a941ebb545dec29b53961d61add2a1", size = 185207, upload-time = "2025-06-05T07:13:44.947Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bd/75/8539d011f6be8e29f339c42e633aae3cb73bffa95dd0f9adec09b9c58e85/tomlkit-0.13.3-py3-none-any.whl", hash = "sha256:c89c649d79ee40629a9fda55f8ace8c6a1b42deb912b2a8fd8d942ddadb606b0", size = 38901, upload-time = "2025-06-05T07:13:43.546Z" },
+]
+
+[[package]]
 name = "toolz"
 version = "1.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1316,6 +1339,15 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/86/eb/20b6cdf273913d0ad05a6a14aed4b9a85591c18a987a3d47f20fa13dcc47/websockets-15.0.1-cp313-cp313-win32.whl", hash = "sha256:ba9e56e8ceeeedb2e080147ba85ffcd5cd0711b89576b83784d8605a7df455fa", size = 176393, upload-time = "2025-03-05T20:02:53.814Z" },
     { url = "https://files.pythonhosted.org/packages/1b/6c/c65773d6cab416a64d191d6ee8a8b1c68a09970ea6909d16965d26bfed1e/websockets-15.0.1-cp313-cp313-win_amd64.whl", hash = "sha256:e09473f095a819042ecb2ab9465aee615bd9c2028e4ef7d933600a8401c79561", size = 176837, upload-time = "2025-03-05T20:02:55.237Z" },
     { url = "https://files.pythonhosted.org/packages/fa/a8/5b41e0da817d64113292ab1f8247140aac61cbf6cfd085d6a0fa77f4984f/websockets-15.0.1-py3-none-any.whl", hash = "sha256:f7a866fbc1e97b5c617ee4116daaa09b722101d4a3c170c787450ba409f9736f", size = 169743, upload-time = "2025-03-05T20:03:39.41Z" },
+]
+
+[[package]]
+name = "win32-setctime"
+version = "1.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/b3/8f/705086c9d734d3b663af0e9bb3d4de6578d08f46b1b101c2442fd9aecaa2/win32_setctime-1.2.0.tar.gz", hash = "sha256:ae1fdf948f5640aae05c511ade119313fb6a30d7eabe25fef9764dca5873c4c0", size = 4867, upload-time = "2024-12-07T15:28:28.314Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e1/07/c6fe3ad3e685340704d314d765b7912993bcb8dc198f0e7a89382d37974b/win32_setctime-1.2.0-py3-none-any.whl", hash = "sha256:95d644c4e708aba81dc3704a116d8cbc974d70b3bdb8be1d150e36be6e9d1390", size = 4083, upload-time = "2024-12-07T15:28:26.465Z" },
 ]
 
 [[package]]

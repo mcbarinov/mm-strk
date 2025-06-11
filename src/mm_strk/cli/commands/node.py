@@ -25,7 +25,7 @@ async def _run(urls: list[str]) -> None:
     for url in urls:
         result[url] = (await _node_status(url)).model_dump()
 
-    mm_print.print_json(result)
+    mm_print.json(result)
 
 
 async def _node_status(url: str) -> NodeStatus:

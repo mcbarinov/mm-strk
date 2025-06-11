@@ -1,11 +1,10 @@
 [project]
 name = "mm-strk"
-version = "0.4.0"
+version = "0.4.1"
 description = ""
 requires-python = ">=3.13"
 dependencies = [
-    "mm-cryptocurrency~=0.4.5",
-    "mm-result>=0.0.4",
+    "mm-cryptocurrency~=0.4.7",
     "starknet-py~=0.27.0",
     "typer>=0.16.0",
 ]
