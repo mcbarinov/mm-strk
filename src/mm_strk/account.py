@@ -39,5 +39,5 @@ def is_address(address: str) -> bool:
         return True
 
     # Minimal form (no leading zeros)
-    canonical = hex(value)[2:]
+    canonical = f"{value:x}"
     return hex_part.lower() == canonical

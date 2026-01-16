@@ -14,7 +14,7 @@ async def address_to_domain(address: str, timeout: float = 5.0, proxy: str | Non
         return res.to_result_ok(None)
     if res.is_err():
         return res.to_result_err()
-    domain = res.parse_json_body("domain")
+    domain = res.parse_json("domain")
     if domain:
         return res.to_result_ok(domain)
     return res.to_result_err("unknown_response")
