@@ -8,12 +8,16 @@ from starknet_py.net.full_node_client import FullNodeClient
 
 
 class NodeStatus(BaseModel):
+    """Starknet node status response."""
+
+    spec_version: str
     block_number: int | str
     chain_id: int | str
     syncing_status: bool | SyncStatus | str
 
 
 def run(urls: list[str], proxy: str | None) -> None:
+    """Check status of Starknet nodes."""
     if proxy:
         typer.echo("proxy is not supported yet")
         raise typer.Exit(code=1)
@@ -29,7 +33,13 @@ async def _run(urls: list[str]) -> None:
 
 
 async def _node_status(url: str) -> NodeStatus:
+    """Fetch status from a single node."""
     client = FullNodeClient(node_url=url)
+
+    try:
+        spec_version: str = await client.spec_version()
+    except Exception as e:
+        spec_version = str(e)
 
     try:
         block_number: int | str = await client.get_block_number()
@@ -46,4 +56,4 @@ async def _node_status(url: str) -> NodeStatus:
     except Exception as e:
         syncing_status = str(e)
 
-    return NodeStatus(block_number=block_number, chain_id=chain_id, syncing_status=syncing_status)
+    return NodeStatus(spec_version=spec_version, block_number=block_number, chain_id=chain_id, syncing_status=syncing_status)
