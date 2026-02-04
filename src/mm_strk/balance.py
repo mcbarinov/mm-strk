@@ -1,3 +1,5 @@
+"""Token balance querying on Starknet."""
+
 import aiohttp
 from aiohttp_socks import ProxyConnector
 from mm_result import Result
@@ -19,6 +21,7 @@ STRK_DECIMALS = 18
 
 
 async def get_balance(rpc_url: str, address: str, token: str, timeout: float = 5, proxy: str | None = None) -> Result[int]:
+    """Get token balance for a Starknet address."""
     try:
         timeout_config = aiohttp.ClientTimeout(total=timeout)
         connector = ProxyConnector.from_url(proxy) if proxy else None

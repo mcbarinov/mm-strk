@@ -1,9 +1,12 @@
+"""Starknet domain resolution via starknet.id API."""
+
 from mm_http import http_request
 from mm_result import Result
 from mm_std import str_contains_any
 
 
 async def address_to_domain(address: str, timeout: float = 5.0, proxy: str | None = None) -> Result[str | None]:
+    """Resolve a Starknet address to its .stark domain name."""
     url = "https://api.starknet.id/addr_to_domain"
     res = await http_request(url, params={"addr": address}, proxy=proxy, timeout=timeout)
     if (
@@ -14,7 +17,7 @@ async def address_to_domain(address: str, timeout: float = 5.0, proxy: str | Non
         return res.to_result_ok(None)
     if res.is_err():
         return res.to_result_err()
-    domain = res.parse_json("domain")
-    if domain:
-        return res.to_result_ok(domain)
+    domain_res = res.json_body("domain")
+    if domain_res.is_ok():
+        return res.to_result_ok(domain_res.unwrap())
     return res.to_result_err("unknown_response")

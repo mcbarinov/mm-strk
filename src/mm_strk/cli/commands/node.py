@@ -1,7 +1,9 @@
+"""Starknet node status checking."""
+
 import asyncio
 
-import mm_print
 import typer
+from mm_print import print_json
 from pydantic import BaseModel
 from starknet_py.net.client_models import SyncStatus
 from starknet_py.net.full_node_client import FullNodeClient
@@ -25,11 +27,12 @@ def run(urls: list[str], proxy: str | None) -> None:
 
 
 async def _run(urls: list[str]) -> None:
+    """Fetch and print status for all given node URLs."""
     result = {}
     for url in urls:
         result[url] = (await _node_status(url)).model_dump()
 
-    mm_print.json(result)
+    print_json(result)
 
 
 async def _node_status(url: str) -> NodeStatus:

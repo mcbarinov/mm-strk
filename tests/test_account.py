@@ -1,9 +1,12 @@
+"""Tests for address validation."""
+
 from starknet_py.hash.address import get_checksum_address
 
 from mm_strk.account import is_address
 
 
 def test_valid_addresses():
+    """Test that valid Starknet addresses are accepted."""
     # Compact lower-case and mixed-case hex strings
     assert is_address("0x1") is True
     assert is_address("0x123abc") is True
@@ -17,6 +20,7 @@ def test_valid_addresses():
 
 
 def test_invalid_addresses():
+    """Test that invalid Starknet addresses are rejected."""
     # Missing prefix or empty
     assert is_address("123abc") is False
     assert is_address("0x") is False
