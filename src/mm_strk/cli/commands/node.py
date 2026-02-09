@@ -3,7 +3,7 @@
 import asyncio
 
 import typer
-from mm_print import print_json
+from mm_clikit import print_json
 from pydantic import BaseModel
 from starknet_py.net.client_models import SyncStatus
 from starknet_py.net.full_node_client import FullNodeClient
